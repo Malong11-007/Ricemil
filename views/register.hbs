@@ -1,0 +1,52 @@
+{{> header }}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registeration</title>
+</head>
+<body>
+	<div class="mx-auto" style="width: 50%;">
+
+		{{#if validationErrors}}
+			{{#each validationErrors}}
+				<div class="alert alert-danger">
+					{{this.msg}}
+				</div>
+			{{/each}}
+		{{/if}}
+
+		<h1 class="mx-auto" style="width: 30%;" >Sign Up</h1>
+		<form method="POST" action= "/register" >
+		<div class="form-group">
+
+		    <label for="username">Username</label>
+		    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter Username">
+		</div>
+
+ 		<div class="form-group">
+		    <label for="Email">Email address</label>
+		    <input type="email" class="form-control" name="email" id="email"  placeholder="Enter email">
+		</div>
+
+		<div class="form-group">
+		    <label for="Password">Password</label>
+		    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+		</div>
+
+		<div class="form-group">
+		    <label for="Re-Password">Re-type Password</label>
+		    <input type="password" class="form-control" id="Re-Password" name="repassword" placeholder="Password">
+		</div>
+
+		<div class="form-group">
+	 		<button type="submit" class="btn btn-primary">Submit</button>
+	  	  </div>
+		</form>
+	</div>
+
+
+
+</body>
+</html>
+
+
