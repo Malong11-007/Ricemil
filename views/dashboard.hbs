@@ -1,106 +1,76 @@
 {{>header}}
-<!DOCTYPE html>
-<html>
+
 <head>
-	<title>Dashboard</title>
-	<link href="//stylesheets/dashboard.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
 </head>
- <body>
 
-
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-          </div>
-        </main>
-      </div>
+<body>
+  <span class="bckg"></span>
+  <header>
+    <h1>Dashboard</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="javascript:void(0);" data-title="Projects">Projects</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" data-title="Team">Team</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" data-title="Diary">Diary</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" data-title="Timeline">Timeline</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" data-title="Settings">Settings</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" data-title="Search">Search</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="title">
+      <h2>Projects</h2>
+      <a href="javascript:void(0);">Hello Bob !</a>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <article class="larg">
+      <div>
+        <h3>Project 1 <span class="entypo-down-open"></span></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus iste quia incidunt ad provident ullam quo assumenda expedita quae sapiente ipsa qui esse similique! Modi obcaecati natus sapiente quaerat omnis.</p>
+      </div>
+      <div>
+        <h3>Project 2 <span class="entypo-down-open"></span></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus iste quia incidunt ad provident ullam quo assumenda expedita quae sapiente ipsa qui esse similique! Modi obcaecati natus sapiente quaerat omnis.</p>
+      </div>
+      <div>
+        <h3>Project 3 <span class="entypo-down-open"></span></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus iste quia incidunt ad provident ullam quo assumenda expedita quae sapiente ipsa qui esse similique! Modi obcaecati natus sapiente quaerat omnis.</p>
+      </div>
+    </article>
+  </main>
 
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-  </body>
-</html>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script >$(document).ready( function() {
+  
+  $('body').on("click", ".larg div h3", function(){
+    if ($(this).children('span').hasClass('close')) {
+      $(this).children('span').removeClass('close');
+    }
+    else {
+      $(this).children('span').addClass('close');
+    }
+    $(this).parent().children('p').slideToggle(250);
+  });
+  
+  $('body').on("click", "nav ul li a", function(){
+    var title = $(this).data('title');
+    $('.title').children('h2').html(title);
+  });
+});
+//# sourceURL=pen.js
+</script>
+</body>
