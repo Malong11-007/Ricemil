@@ -34,11 +34,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'ricemill'
+  host: 'sql12.freemysqlhosting.net',
+  user: 'sql12243197',
+  password: '8YcqWUyKmf',
+  database : 'sql12243197',
+  port : process.env.DB_PORT
 };
  
  var sessionStore = new MySQLStore(options);
