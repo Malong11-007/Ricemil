@@ -6,6 +6,7 @@ var logger = require('morgan');
 var babel = require("babel-core");
 var bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+var compression = require('compression');
 
 //Autherntication 
 const session = require('express-session');
@@ -17,6 +18,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+app.use(compression());
 
 require('dotenv').config();
 
