@@ -62,9 +62,16 @@ body {
  * Cover
  */
 
-.cover {
-  padding : 15% 20%;
+.inner {
+
 }
+
+.cover {
+
+  margin: 20%;
+
+}
+
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
