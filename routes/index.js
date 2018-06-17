@@ -40,6 +40,7 @@ router.get('/register', (req, res, next) => {
 });
 
 router.post('/register', (req, res, next) => {
+	const db = require('../db.js');
 	req.checkBody('username', 'Username field cannot be empty.').notEmpty();
 	req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
 	req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
@@ -50,19 +51,23 @@ router.post('/register', (req, res, next) => {
 	req.checkBody('repassword', 'Passwords do not match, please try again.').equals(req.body.password);
 
 	const validationErrors = req.validationErrors(); 
-
+		const username = req.body.username;
+		const email = req.body.email;
+		let password = req.body.password;
 	if(validationErrors){
 		console.log(`validationErrors: ${JSON.stringify(validationErrors)}`);
 		res.render('register', {validationErrors:validationErrors});
 	} else {
-		const username = req.body.username;
-		const email = req.body.email;
-		let password = req.body.password;
-		bcrypt.hash(password, saltRounds, function(err, hash) {
-	  	if(err) throw err;
-	  	else{
-			const db = require('../db.js');
-			db.query('INSERT INTO users (name,password,email) VALUES(?,?,?)' ,[username,hash,email], 
+		db.query('SELECT name from users where name=?',[req.body.username],(error,results,fields) => {
+			if(error) throw error;
+			console.log(results[0]);
+			if(!results[0]){
+				name_available=results[0];
+				console.log('username available ' + results[0]);
+			bcrypt.hash(password, saltRounds, function(err, hash) {
+	  		if(err) throw err;
+	  		else{
+				db.query('INSERT INTO users (name,password,email) VALUES(?,?,?)' ,[username,hash,email], 
 				(error,results,fields)=>{
 					if(error) throw error;
 					else {
@@ -82,6 +87,17 @@ router.post('/register', (req, res, next) => {
 				});  		
 			}
 		});
+
+
+		} else {
+			name_available=results[0];
+			console.log('chabby nak ware');
+
+			res.render('register', {name_available:results[0].name});
+		}
+	});
+
+
 	}
 
 });
