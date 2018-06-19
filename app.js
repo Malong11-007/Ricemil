@@ -18,7 +18,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-app.use(compression());
+
 
 require('dotenv').config();
 
@@ -85,6 +85,7 @@ app.use((req,res,next) => {
   next();
 });
 
+app.use(compression());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
