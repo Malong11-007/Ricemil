@@ -15,11 +15,7 @@
 					</div>
 				{{/each}}
 			{{/if}}
-			{{#if name_available}}
-				<div class="alert alert-danger">
-					<span class="glyphicons glyphicons-warning-sign"></span> {{name_available}} : Username not available
-				</div>
-			{{/if}}
+
 
 			<h1 style="text-align:center">Sign Up</h1>
 			<form method="POST" action= "/register" >
@@ -27,11 +23,13 @@
 
 			    <label for="username">Username</label>
 			    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter Username">
+			    <span id = "error_name"></span>
 			</div>
 
 	 		<div class="form-group">
 			    <label for="Email">Email address</label>
 			    <input type="email" class="form-control" name="email" id="email"  placeholder="Enter email">
+
 			</div>
 
 			<div class="form-group">
@@ -52,9 +50,13 @@
 	</div>
 
 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="/javascripts/register_val.js"></script>
 
-{{>footer}}
+
 </body>
 </html>
-
 

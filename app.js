@@ -14,6 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 var MySQLStore = require('express-mysql-session')(session);
 const bcrypt = require('bcrypt');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -43,6 +44,14 @@ const options = {
   port : process.env.DB_PORT
 };
  
+//  var options = {
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   database : 'ricemill',
+//   port : 3306
+// };
+
  var sessionStore = new MySQLStore(options);
 
 app.use(session({
@@ -88,7 +97,7 @@ app.use((req,res,next) => {
 app.use(compression());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -128,8 +137,8 @@ hbs.registerHelper('json', function(context) {
     return JSON.stringify(context, null, 2);
 });
 
-// app.listen(process.env.PORT || 5000, function(){
-//   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-// });
+app.listen(process.env.PORT || 5000, function(){
+   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+ });
 
 module.exports = app;

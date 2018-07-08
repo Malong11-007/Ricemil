@@ -7,11 +7,7 @@ const saltRounds = 10;
 let user_id = {};
 /* GET home page. */
 
-router.get('/dashboard',authenticationMiddleware()  ,(req, res, next) => {
-  console.log(req.user);
-  console.log(req.isAuthenticated());
-  res.render('dashboard');
-});
+
 
 router.get('/logout', (req, res, next) => {
     req.logout()
@@ -27,7 +23,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local',{
-	successRedirect:'/dashboard',
+	successRedirect:'/user/dashboard',
 	failureRedirect:'/login'
 }));
 
@@ -58,12 +54,6 @@ router.post('/register', (req, res, next) => {
 		console.log(`validationErrors: ${JSON.stringify(validationErrors)}`);
 		res.render('register', {validationErrors:validationErrors});
 	} else {
-		db.query('SELECT name from users where name=?',[req.body.username],(error,results,fields) => {
-			if(error) throw error;
-			console.log(results[0]);
-			if(!results[0]){
-				name_available=results[0];
-				console.log('username available ' + results[0]);
 			bcrypt.hash(password, saltRounds, function(err, hash) {
 	  		if(err) throw err;
 	  		else{
@@ -78,7 +68,7 @@ router.post('/register', (req, res, next) => {
 								user_id = results[0];
 							req.login(user_id, function(err) {
 								  if (err) { return next(err); }
-								  return res.redirect('/dashboard');
+								  return res.redirect('/user/dashboard');
 								});
 							}
 						});
@@ -88,20 +78,8 @@ router.post('/register', (req, res, next) => {
 			}
 		});
 
-
-		} else {
-			name_available=results[0];
-			console.log('chabby nak ware');
-
-			res.render('register', {name_available:results[0].name});
-		}
-	});
-
-
 	}
-
 });
-
 passport.serializeUser(function(user_id, done) {
   done(null, user_id);
 });
@@ -119,5 +97,22 @@ function authenticationMiddleware () {
 	}
 }
 
+
+router.post('/validate', (req, res, next) => {
+	const db = require('../db.js');
+	
+	db.query('SELECT name from users where name=?',[req.body.username],(error,results,fields) => {
+		if(error) throw error;
+		console.log(req.body.username);
+		console.log(results[0]);
+		if(!results[0]){    // NO USER FOUND WITH ENTERED NAME
+			res.send(true); // RETURN TRUE
+		} else {
+			res.send(false);
+		}
+	});
+	
+	
+});
 
 module.exports = router;
