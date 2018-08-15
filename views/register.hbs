@@ -2,60 +2,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/register.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Registeration</title>
 </head>
-<body >
-	<div class="mx-auto" style="width: 50%">
-		<div style="padding-top:70px">
-			{{#if validationErrors}}
-				{{#each validationErrors}}
-					<div class="alert alert-danger">
-					<span class="glyphicons glyphicons-warning-sign"></span>{{this.msg}}
+<body>
+	<div class="form-body">
+
+
+		<div class="form-structor">
+			<div class="signup">
+				<h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+				<form method="POST" action= "/register" >
+					<div class="form-holder">
+						<input type="text" class="input" name="username" id="username" placeholder="Enter Username" required />
+						<input type="email" class="input" name="email" id="email"  placeholder="Enter email" required />
+						<input type="text" class="input" id="contact" name="contact" placeholder="Enter Contact No." pattern="[0-9]{11}"required />
+						<input type="password" class="input" name="password" id="password"  placeholder="Password" required/>
+						<input type="password" class="input"  name="repassword" id="Re-Password" placeholder="Re-Password" required>
+						<input type="text" class="input" name="address" id="address" placeholder="Enter Address" required>
+						 
 					</div>
-				{{/each}}
-			{{/if}}
-
-
-			<h1 style="text-align:center">Sign Up</h1>
-			<form method="POST" action= "/register" >
-			<div class="form-group">
-
-			    <label for="username">Username</label>
-			    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter Username">
-			    <span id = "error_name"></span>
+					<button type="submit" class="submit-btn">Sign up</button>
+				</form>
 			</div>
-
-	 		<div class="form-group">
-			    <label for="Email">Email address</label>
-			    <input type="email" class="form-control" name="email" id="email"  placeholder="Enter email">
-
+			<div class="login slide-up">
+				<div class="center">
+					<h2 class="form-title" id="login" onclick="openLogin()"><span>or</span>Log in</h2>
+					{{!-- <input type="checkbox" checked="checked"> Keep me login --}}
+				</div>
 			</div>
-
-			<div class="form-group">
-			    <label for="Password">Password</label>
-			    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-			</div>
-
-			<div class="form-group">
-			    <label for="Re-Password">Re-type Password</label>
-			    <input type="password" class="form-control" id="Re-Password" name="repassword" placeholder="Password">
-			</div>
-
-			<div class="form-group">
-		 		<button type="submit" class="btn btn-primary">Submit</button>
-		  	  </div>
-			</form>
 		</div>
+
 	</div>
 
+{{!-- <div id="particles-js"></div>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script type="text/javascript" src="/javascripts/register_val.js"></script>
+<script src="/javascripts/particles.min.js"></script>
+<script>
+    particlesJS.load('particles-js', '/javascripts/particles.json', function(){
+        console.log('particles.json loaded...');
+    });
+</script> --}}
 
+<script>
+	function openLogin()
+	{
+		window.setTimeout("location.href='/login'",500);
+	}
+
+</script>
+
+<script>
+	console.clear();
+
+	const loginBtn = document.getElementById('login');
+	const signupBtn = document.getElementById('signup');
+
+	loginBtn.addEventListener('click', (e) => {
+		let parent = e.target.parentNode.parentNode;
+		Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+			if(element !== "slide-up") {
+				parent.classList.add('slide-up')
+			}else{
+				signupBtn.parentNode.classList.add('slide-up')
+				parent.classList.remove('slide-up')
+			}
+		});
+	});
+
+	signupBtn.addEventListener('click', (e) => {
+		let parent = e.target.parentNode;
+		Array.from(e.target.parentNode.classList).find((element) => {
+			if(element !== "slide-up") {
+				parent.classList.add('slide-up')
+			}else{
+				loginBtn.parentNode.parentNode.classList.add('slide-up')
+				parent.classList.remove('slide-up')
+			}
+		});
+	});
+</script>
+
+
+
+
+<script type="text/javascript" src="/javascripts/verify_contact.js"></script>
+<script type="text/javascript" src="/javascripts/verify_email.js"></script>
 
 </body>
 </html>

@@ -36,21 +36,21 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const options = {
-  host: 'sql12.freemysqlhosting.net',
-  user: 'sql12246627',
-  password: 'Knst5sCzVp',
-  database : 'sql12246627',
-  port : process.env.DB_PORT
-};
- 
-//  var options = {
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database : 'ricemill',
-//   port : 3306
+// const options = {
+//   host: 'sql12.freemysqlhosting.net',
+//   user: 'sql12246627',
+//   password: 'Knst5sCzVp',
+//   database : 'sql12246627',
+//   port : process.env.DB_PORT
 // };
+ 
+ var options = {
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database : 'ricedatabase',
+  port : 3306
+};
 
  var sessionStore = new MySQLStore(options);
 
@@ -68,17 +68,21 @@ passport.use(new LocalStrategy(
 function(username, password, done) {
 
   const db = require('./db.js');
-  db.query('SELECT id, password from users where name=?' , [username] ,(err,results,fields) => {
+  console.log(username);
+  db.query('SELECT supplierID, suppPassword from supplier where suppName=?' , [username] ,(err,results,fields) => {
       if(err) throw err;
-
+        console.log(results);
       if(results.length === 0){
         done(null,false);
       } else {
-        const hash = results[0].password;
+        const hash = results[0].suppPassword;
+        console.log(results[0]);
+        console.log(hash);
+        console.log(password);
           bcrypt.compare(password, hash , (err,response) => {
             if(response===true){
               console.log(results[0]);
-              return done(null,results[0].id)
+              return done(null,results[0].supplierID)
             } else {
               done(null,false);
             }
@@ -137,8 +141,8 @@ hbs.registerHelper('json', function(context) {
     return JSON.stringify(context, null, 2);
 });
 
-// app.listen(process.env.PORT || 5000, function(){
-//    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-//  });
+app.listen(process.env.PORT || 5000, function(){
+   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+ });
 
 module.exports = app;

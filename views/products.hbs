@@ -1,0 +1,49 @@
+{{>header}}
+<script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+	{{!-- <h1>{{riceName}}</h1> --}}	
+<div class="card-group">
+{{#each string}}
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="http://www.blackseagrain.net/foto/grain-cereals/rice.png/image_large" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{riceName}}</h5>
+    <p class="card-text">Price:${{price}} </p>
+     <p class="card-text">Type:{{riceType}}  </p>
+    <a href="#" class="btn btn-primary">ORDER</a>
+  </div>
+</div>
+
+
+{{/each}}
+</div>
+
+
+
+
+
+{{!-- <div class="block">
+	<div class="product">
+		<img src="https://dribbble.s3.amazonaws.com/users/6033/screenshots/949815/ryu_drbl.gif">
+			<div class="buttons">
+			<a class="buy" href="#">Add to cart</a>
+			<a class="preview" href="#">View item</a>
+		</div>
+
+	</div>
+
+	<div class="info">
+		<h4>3D Ryu of Street Fighter</h4>
+		<span class="description">
+			An awesome 3D illustration of Denis "Krol" Krasavchikov 
+		</span>
+		<span class="price">$62.97</span>
+		<a class="buy_now" href="#">Buy Now</a>
+
+	</div>
+
+	<div class="details">
+		<span class="time">12 hours ago</span>
+	</div>
+</div> --}}

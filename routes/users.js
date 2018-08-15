@@ -2,10 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/dashboard',authenticationMiddleware()  ,(req, res, next) => {
-  console.log(req.user);
-  console.log(req.isAuthenticated());
-  res.render('dashboard');
+router.get('/products',authenticationMiddleware()  ,(req, res, next) => {
+ console.log('ye tera pakistan hai'+req.session.passport.user);
+	const db = require('../db.js');
+	db.query('SELECT * FROM products JOIN sales ON sales.productID = products.productID where sales.supplierID=?',[req.session.passport.user],(error,results,fields) => {
+		let string = JSON.stringify(results);
+		console.log(string);
+		if(error) throw error;
+		else{
+			res.render('products',{string:results});
+		}
+	});
+ 
+  //console.log(req.isAuthenticated());
 });
 
 function authenticationMiddleware () {  
@@ -17,5 +26,6 @@ function authenticationMiddleware () {
 	}
 }
 
-
 module.exports = router;
+// SELECT * FROM products  JOIN (products, sales) ON (products.productID=sales.productID AND products.productID=?)
+//                  SELECT * FROM products JOIN products ON sales.productID = products.productID AND products.productID = ?
